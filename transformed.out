@@ -1,3 +1,4 @@
+#^run.js&^
 /**
  * Initializes the application with the given parameters.
  * @param {Function} runCall - The function to be called when the application is run.
