@@ -1,0 +1,8 @@
+{
+    "name": "hypecall",
+    "version": "0.0.1",
+    "exports": "./run.js",
+    "dependencies": {
+        "quickjs-emscripten": "^0.23.0"
+    }
+}
