@@ -8,11 +8,11 @@
  */
 const init = (runCall, node = ipc(), serializedServerKey = JSON.parse(Buffer.from(process.env.SERVERKEY, "hex")), serializedCallKey = JSON.parse(Buffer.from(process.env.CALLKEY, "hex"))) => {
   const serverKey = serializedServerKey;
-  serverKey.publicKey = Buffer.from(serverKey.publicKey.data);
-  serverKey.scalar = Buffer.from(serverKey.scalar.data);
+  serverKey.publicKey = Buffer.from(serverKey.publicKey, 'hex');
+  serverKey.scalar = Buffer.from(serverKey.scalar, 'hex');
   const callKey = serializedCallKey;
-  callKey.publicKey = Buffer.from(callKey.publicKey.data);
-  callKey.scalar = Buffer.from(callKey.scalar.data);
+  callKey.publicKey = Buffer.from(callKey.publicKey, 'hex');
+  callKey.scalar = Buffer.from(callKey.scalar, 'hex');
   node.lbserve(callKey, serverKey, process.env.IPCNAME, runCall);
   return node;
 };
