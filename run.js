@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+const ipc = require('hyper-ipc-secure')
 /**
  * Initializes the application with the given parameters.
  * @param {Function} runCall - The function to be called when the application is run.
@@ -7,14 +9,14 @@
  * @returns {Object} - The initialized hyper-ipc-secure node object.
  */
 const init = (runCall, node = ipc(), serializedServerKey = JSON.parse(Buffer.from(process.env.SERVERKEY, "hex")), serializedCallKey = JSON.parse(Buffer.from(process.env.CALLKEY, "hex"))) => {
-  const serverKey = serializedServerKey;
-  serverKey.publicKey = Buffer.from(serverKey.publicKey, 'hex');
-  serverKey.scalar = Buffer.from(serverKey.scalar, 'hex');
-  const callKey = serializedCallKey;
-  callKey.publicKey = Buffer.from(callKey.publicKey, 'hex');
-  callKey.scalar = Buffer.from(callKey.scalar, 'hex');
-  node.lbserve(callKey, serverKey, process.env.IPCNAME, runCall);
-  return node;
-};
-
-module.exports = init;
+    const serverKey = serializedServerKey;
+    serverKey.publicKey = Buffer.from(serverKey.publicKey, 'hex');
+    serverKey.scalar = Buffer.from(serverKey.scalar, 'hex');
+    const callKey = serializedCallKey;
+    callKey.publicKey = Buffer.from(callKey.publicKey, 'hex');
+    callKey.scalar = Buffer.from(callKey.scalar, 'hex');
+    node.lbserve(callKey, serverKey, process.env.IPCNAME, runCall);
+    return node;
+  };
+  
+module.exports = init
