@@ -15,6 +15,7 @@ const init = (runCall, node = ipc(), serializedServerKey = JSON.parse(Buffer.fro
     const callKey = serializedCallKey;
     callKey.publicKey = Buffer.from(callKey.publicKey, 'hex');
     callKey.scalar = Buffer.from(callKey.scalar, 'hex');
+    console.log(callKey.publicKey.toString('hex'), serverKey.publicKey.toString('hex'))
     node.lbserve(callKey, serverKey, process.env.IPCNAME, runCall);
     return node;
   };
